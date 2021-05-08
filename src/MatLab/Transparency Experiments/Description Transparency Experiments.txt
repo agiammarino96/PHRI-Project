@@ -1,0 +1,42 @@
+We have implemented and admittance controller in order to improve the
+transparency of the haptic paddle. We want to render the free motion, so we want
+the virtual force to be null (K=0 and B=0), moreover we want an apparent
+inertia of the device as small as possible. The servo-amplifier that controls
+the motor can control it in velocity, we have tuned Imax in order to avoid 
+instability for too low apparent inertias. Obviously the saturation of the motor
+is easier to achieve, but we have considered that in the transparency plane 
+plots by computing the saturation acceleration, velocity and torque. 
+
+The experiment consists in a human that interacts with the haptic paddle, the 
+first time using admittance control and the second time using no control. During
+both the experiments acceleration, velocity and force (torque) are measured and
+are then plotted. Data obtained are approximated with planes. Even if the 
+approximation has a certain, non negligible, error, it's evident from the plot
+that the slope of the admittance transparency plane is lower than the one of the
+no control transparency plane. J_p=2.2e-4 J_m=1.58e-6 J_apparent=1.00e-6.
+Considering the inertia of the motor negligible, we have enhanced the
+transparency of the haptic paddle reducing the inertia of 2 orders of magnitude.
+
+Problems: we have to set the zero of the force at every run, it changes
+continuously. Moreover when the Force is filtered, a delay is introduced and
+this retards the command to the motor in the inversion of direction. This
+results in higher forces felt by the human, we preferred not to filter the force.
+
+What we did to implement the VI: 
+- Calibration of the force sensor: (insert picture) we calibrated using
+4 weights both for negative forces and positive forces; we had to pay attention
+to keep a 90° angle between the weight and the handle of the haptic paddle.
+Another thing that we did is we considered the weight of the part of the haptic
+paddle that is above the force sensor, we compensated for it when we calculated
+the transfer function from Voltage to Force (insert formula and graph of
+transfer function)
+- Transfer function from DeltaV commanded to the servo amplifier 
+and velocity obtained:
+the PID control is inside the servo-amplifier, we give to the servo-amplifier the information
+about the desired velocity of the motor and it controls the motor thanks to a 
+tachometer that measures the velocity so that the actual velocity is set to 
+the desired velocity. What we do is, we integrate the desired acceleration in 
+order to obtain the desired velocity, we give this information to the servo
+amplifier by converting the desired velocity in the DeltaV commanded, then we 
+command the servo amplifier with this DeltaV. (insert formula and graph of 
+transfer function).
