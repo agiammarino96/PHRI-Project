@@ -3,7 +3,7 @@
  
 You can find the videos that show the final outcome of the project in the folder "Videos Final Outcome", in particular:
 - In "Uncontrolled Device" the human interacts with the uncontrolled device, so the video shows the natural dynamic response of the Haptic Paddle.
-- In "Control for High Admittance" the human interacts with the device controlled for rendering a very high admittance, that is the dynamic relation between force and velocity (the higher the admittance, the larger are the accelerations caused by the same force).
+- In "Control for High Admittance" the human interacts with the device controlled for rendering a high admittance, that is the dynamic relation between force and motion (the higher the admittance, the larger the accelerations caused by the same force).
 - In the remaining videos, two mass-spring-damper systems are rendered.
 
 You can find the final powerpoint presentation in the foloder "Final Presentation".
